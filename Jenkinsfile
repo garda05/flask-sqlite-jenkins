@@ -48,11 +48,11 @@ pipeline {
                 )]) {
                     script {
                         if (isUnix()) {
-                            sh 'echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin'
+                            sh 'printf "%s" "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin'
                             sh 'docker push "$IMAGE_NAME:$BUILD_NUMBER"'
                             sh 'docker push "$IMAGE_NAME:latest"'
                         } else {
-                            bat "echo %DOCKERHUB_TOKEN% | docker login -u %DOCKERHUB_USER% --password-stdin"
+                            bat "docker login -u %DOCKERHUB_USER% -p %DOCKERHUB_TOKEN%"
                             bat "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
                             bat "docker push %IMAGE_NAME%:latest"
                         }
