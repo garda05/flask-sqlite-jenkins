@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Ganti dengan username Docker Hub milikmu.
-        IMAGE_NAME = 'GANTI_USERNAME_DOCKERHUB/modul2-flask-db'
+        IMAGE_NAME = 'garda05/modul2-flask-db'
         REGISTRY_CREDENTIALS = 'dockerhub-credentials'
     }
 
